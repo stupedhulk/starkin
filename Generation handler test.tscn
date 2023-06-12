@@ -101,5 +101,8 @@ label = "Sun Angle"
 value_display_end = "°"
 max_value = 360
 
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.5, 0.5, 0.5)
+
 [connection signal="pressed" from="Button" to="chunk" method="_on_button_pressed"]
 [connection signal="value_changed" from="GUI/Sun Angle" to="sky lighting" method="_on_sun_angle_value_changed"]

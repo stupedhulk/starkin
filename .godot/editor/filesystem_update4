@@ -5,8 +5,9 @@ res://menu.tscn
 res://Player.tscn
 res://World.tscn
 res://Generation test.tscn
+res://Generation handler test.tscn
+res://scripts/Singletons/block models.gd
 res://scripts/Singletons/generation.gd
 res://scripts/chunks.gd
-res://Generation handler test.tscn
-res://chunk handler test.gd
-res://chunk.tres
+res://scripts/menu.gd
+res://scripts/chunk test.gd

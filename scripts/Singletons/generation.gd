@@ -236,7 +236,9 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 			noise.fractal_octaves = 9
 			noise2.fractal_octaves = 1
 			caves.fractal_octaves = 5
-		
+			
+			
+			#Pass 1
 			#looping through each position in the chunk
 			while pos.z < chunk_size.z + 1:
 				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
@@ -299,6 +301,37 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 					if pos.y >= chunk_size.y + 1:
 						pos.y = -1
 						pos.z += 1
+			
+			
+			
+			
+			#pass 2
+			pos = Vector3(-1,-1,-1)
+			caves.fractal_octaves = 9
+			#looping through each position in the chunk
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+					
+					
+					
+					
+					if pos in blocks and blocks[pos] == "stone" \
+							and not (pos + Vector3(0,1,0) in blocks or pos + Vector3(0,1,0) in reference_blocks) \
+							and caves.get_noise_3d(pos.x, pos.y, pos.z) > 0.5:
+						blocks[pos] = "grass_stone"
+					
+					
+					
+					#getting next position value
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+				
 			if debug: print("ran: " + i)
 		
 		
@@ -642,6 +675,45 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 			if debug: print("ran: " + i)
 		block_list.append(blocks)
 		if deep_debug: print(block_list)
+	
+	
+		elif i == "stone world":
+				noise.fractal_octaves = 9
+				caves.fractal_octaves = 5
+			
+				while pos.z < chunk_size.z + 1:
+					if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+						
+						var surface = round(noise.get_noise_2d((pos.x + chunk_pos.x*chunk_size.x)/smooth,\
+								(pos.z + chunk_pos.z*chunk_size.z)/smooth)*scale) + 1320
+						
+						var cave = round(caves.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)/cave_size,\
+								(pos.y + chunk_pos.y*chunk_size.y)/cave_size, \
+								(pos.z + chunk_pos.z*chunk_size.z)/cave_size) * cave_rarity)
+						
+						if pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1:
+							if pos.y <= surface - chunk_pos.y*chunk_size.y - 5:
+								if randi()%1+1 == 1: block = 'stone'
+								else: block = 'cobblestone'
+							elif pos.y == surface - chunk_pos.y*chunk_size.y - 1:
+								block = 'grass_stone'
+							else:
+								block = 'stone'
+							if pos.x >= 0 and pos.x < chunk_size.x \
+							and pos.y >= 0 and pos.y < chunk_size.y\
+							and pos.z >= 0 and pos.z < chunk_size.z:
+								blocks[pos] = block
+							else:
+								reference_blocks[pos] = block
+						pos.x += 1
+					else:
+						if pos.x >= chunk_size.x + 1:
+							pos.x = -1
+							pos.y += 1
+						if pos.y >= chunk_size.y + 1:
+							pos.y = -1
+							pos.z += 1
+				if debug: print("ran: " + i)
 	
 	
 	if deep_debug: print(blocks)

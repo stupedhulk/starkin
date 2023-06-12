@@ -12,6 +12,8 @@ func _on_button_pressed():
 	Generation.world_seed = data["seed"]
 	Generation.scale = data["scale"]
 	Generation.smooth = data["smooth"]
+	Generation.chunk_override = data["chunk override"]
+	Generation.override_chunk = data["override chunk"]
 	
 	get_tree().change_scene_to_file("res://World.tscn")
 

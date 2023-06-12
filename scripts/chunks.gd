@@ -18,8 +18,8 @@ var chunk_override = ["semirealistic"]
 
 
 var chunk_handler_thread = Thread.new()
-var chunk_load_threads = [Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new()]
-var busy_chunk_threads = [false, false, false, false, false, false, false, false, false, false, false, false, false]
+var chunk_load_threads = [Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new(), Thread.new()]
+var busy_chunk_threads = [false, false, false, false, false, false, false, false, false, false]
 var block_place_threads = []
 
 
@@ -300,7 +300,6 @@ func load_chunk(data, save):
 	chunk.material_override = load("res://chunk.tres")
 	chunk.position = data[0]*Generation.chunk_size
 	chunk.mesh = data[1]
-	chunk.set_script(load("res://scripts/chunk.gd"))
 	chunk.set_process(true)
 	chunk.set_physics_process(true)
 	if !get_node_or_null(str(data[0])): add_child.call_deferred(chunk)

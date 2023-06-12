@@ -2,7 +2,7 @@ extends CSGMesh3D
 
 var chunk_pos = Vector3(-1, 41, 0)
 var Seed = 279
-var generation_type = ["semirealistic"]
+var generation_type = ["starkin"]
 var debug = false
 var deep_debug = false
 var algorithm = "basic"
