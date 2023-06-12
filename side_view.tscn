@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://upjikk6sy0j4"]
+
+[ext_resource type="Script" path="res://scripts/Window.gd" id="1_s3q7b"]
+
+[node name="side view" type="Window"]
+initial_position = 3
+size = Vector2i(1000, 500)
+current_screen = 0
+script = ExtResource("1_s3q7b")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

@@ -1,0 +1,180 @@
+[gd_scene load_steps=6 format=3 uid="uid://clswl1a4ehooq"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_dskcn"]
+[ext_resource type="Script" path="res://scripts/Settings.gd" id="3_d7qr5"]
+[ext_resource type="PackedScene" uid="uid://ribpt27en4t0" path="res://drop_down.tscn" id="4_1vgpq"]
+[ext_resource type="Texture2D" uid="uid://d1h56l7ng35x4" path="res://Textures/image.png" id="4_8xyej"]
+[ext_resource type="Script" path="res://scripts/Worlds.gd" id="5_uf8j2"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dskcn")
+
+[node name="Image" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(0.999934, 0.999991)
+texture = ExtResource("4_8xyej")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 891.0
+offset_top = 1011.0
+offset_right = 1834.0
+offset_bottom = 1301.0
+scale = Vector2(0.174, 0.174)
+theme_override_font_sizes/font_size = 206
+disabled = true
+text = "Play"
+
+[node name="Settings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 348.0
+offset_bottom = 646.0
+script = ExtResource("3_d7qr5")
+
+[node name="ColorRect" type="ColorRect" parent="Settings"]
+layout_mode = 0
+offset_right = 348.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.470588)
+
+[node name="Name" type="TextEdit" parent="Settings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 333.0
+offset_bottom = 57.0
+text = "New World"
+placeholder_text = "Seed"
+
+[node name="Label" type="Label" parent="Settings/Name"]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 318.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
+text = "Name"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Seed" type="TextEdit" parent="Settings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 66.0
+offset_right = 333.0
+offset_bottom = 103.0
+text = "279"
+placeholder_text = "Seed"
+
+[node name="Label" type="Label" parent="Settings/Seed"]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 318.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
+text = "Seed "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Scale" type="TextEdit" parent="Settings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 112.0
+offset_right = 333.0
+offset_bottom = 149.0
+text = "1000"
+placeholder_text = "Scale"
+
+[node name="Label" type="Label" parent="Settings/Scale"]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 318.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
+text = "Scale "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Smooth" type="TextEdit" parent="Settings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 158.0
+offset_right = 333.0
+offset_bottom = 195.0
+text = "50"
+placeholder_text = "Smooth"
+
+[node name="Label" type="Label" parent="Settings/Smooth"]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 318.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
+text = "Smooth "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Create World" type="Button" parent="Settings"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 985.0
+offset_right = 225.0
+offset_bottom = 1052.0
+text = "Create World"
+
+[node name="Generation Type" parent="Settings" instance=ExtResource("4_1vgpq")]
+offset_left = 14.0
+offset_top = 233.0
+offset_right = 331.0
+offset_bottom = 264.0
+text = "Generation"
+items = ["semirealistic", "cake", "pillars", "lava lamp", "This One Seems Interesting", "blobs", "clouds", "dank uncle chunky", "random seed", "flat", "starkin"]
+minimal_distance = 0
+maximum_distnace = 321
+dropdown_length = 219
+
+[node name="Override Chunk" type="CheckBox" parent="Settings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 200.0
+offset_right = 257.0
+offset_bottom = 231.0
+text = "Override Chunk Generation"
+
+[node name="Worlds" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1476.0
+offset_top = 33.0
+offset_right = 1824.0
+offset_bottom = 679.0
+script = ExtResource("5_uf8j2")
+
+[node name="ColorRect2" type="ColorRect" parent="Worlds"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = -32.0
+offset_right = 441.0
+offset_bottom = 1048.0
+color = Color(0, 0, 0, 0.470588)
+
+[node name="world buttons" type="GridContainer" parent="Worlds"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = -32.0
+offset_right = 441.0
+offset_bottom = 1048.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 672.0
+offset_right = 246.0
+offset_bottom = 857.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="focus_exited" from="Settings/Seed" to="Settings" method="_int_button_focus_exited"]
+[connection signal="focus_exited" from="Settings/Scale" to="Settings" method="_int_button_focus_exited"]
+[connection signal="focus_exited" from="Settings/Smooth" to="Settings" method="_int_button_focus_exited"]
+[connection signal="pressed" from="Settings/Create World" to="Settings" method="_on_apply_pressed"]
+[connection signal="pressed" from="Settings/Create World" to="Worlds" method="update"]

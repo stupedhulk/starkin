@@ -1,0 +1,845 @@
+[gd_scene load_steps=11 format=3 uid="uid://ve7sxvynr2pa"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_24hxe"]
+[ext_resource type="Script" path="res://scripts/Tabs.gd" id="2_pn3o5"]
+[ext_resource type="Script" path="res://scripts/Inventory.gd" id="3_bsmxy"]
+[ext_resource type="Texture2D" uid="uid://caji1asi83jgv" path="res://Textures/slot spriteshete.png" id="4_uf50c"]
+[ext_resource type="Script" path="res://scripts/Slot.gd" id="5_2b6yj"]
+[ext_resource type="Texture2D" uid="uid://cspltkdcta3y8" path="res://Textures/blocks.png" id="6_t5jti"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_13q4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htdw1"]
+atlas = ExtResource("4_uf50c")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5wwe0"]
+texture = SubResource("AtlasTexture_htdw1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5flx"]
+atlas = ExtResource("6_t5jti")
+region = Rect2(192, 0, 16, 16)
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(1.66713, 1.66713)
+script = ExtResource("1_24hxe")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.007
+offset_bottom = 648.0
+metadata/_edit_use_anchors_ = true
+
+[node name="background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.00462963
+anchor_right = 0.160152
+anchor_bottom = 0.00462963
+offset_top = 31.0
+offset_right = 256.0
+offset_bottom = 648.0
+color = Color(0.180392, 0.180392, 0.180392, 0.239216)
+metadata/_edit_use_anchors_ = true
+
+[node name="TabBar" type="TabBar" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.164063
+anchor_bottom = 0.00462963
+offset_right = 256.0
+offset_bottom = 31.0
+drag_to_rearrange_enabled = true
+tab_count = 3
+tab_0/title = "Item List"
+tab_1/title = "Crafting"
+tab_2/title = "Equipment"
+script = ExtResource("2_pn3o5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Item List" type="Control" parent="Control/TabBar"]
+visible = false
+anchors_preset = 0
+offset_top = 34.0
+offset_right = 297.0
+offset_bottom = 648.0
+
+[node name="ItemList" type="ItemList" parent="Control/TabBar/Item List"]
+layout_mode = 0
+offset_left = 19.0
+offset_right = 270.0
+offset_bottom = 617.0
+item_count = 1
+item_0/text = "Stone (3)"
+item_0/icon = SubResource("CompressedTexture2D_13q4q")
+
+[node name="Crafting" type="Control" parent="Control/TabBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_top = 34.0
+offset_right = 297.0
+offset_bottom = 648.0
+
+[node name="GridContainer" type="GridContainer" parent="Control/TabBar/Crafting"]
+layout_mode = 0
+offset_right = 274.0
+offset_bottom = 431.0
+
+[node name="Equipment" type="Control" parent="Control/TabBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_top = 34.0
+offset_right = 297.0
+offset_bottom = 648.0
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 896.0
+offset_right = 1152.0
+offset_bottom = 648.0
+metadata/_edit_use_anchors_ = true
+
+[node name="background" type="ColorRect" parent="Control2"]
+layout_mode = 2
+anchor_left = -0.164063
+anchor_top = 0.00462963
+anchor_bottom = 0.00462963
+offset_top = 31.0
+offset_right = 256.0
+offset_bottom = 648.0
+color = Color(0.180392, 0.180392, 0.180392, 0.239216)
+metadata/_edit_use_anchors_ = true
+
+[node name="TabBar" type="TabBar" parent="Control2"]
+layout_mode = 2
+anchor_left = -0.0427649
+anchor_right = -0.0427649
+anchor_bottom = 0.00462963
+offset_left = 10.9478
+offset_right = 266.948
+offset_bottom = 31.0
+tab_alignment = 2
+drag_to_rearrange_enabled = true
+tab_count = 3
+tab_0/title = "backpack"
+tab_1/title = "bag"
+tab_2/title = "bag 2"
+script = ExtResource("2_pn3o5")
+metadata/_edit_use_anchors_ = true
+
+[node name="backpack" type="Control" parent="Control2/TabBar"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -588.885
+offset_right = -548.885
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Control2/TabBar/backpack"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 538.0
+offset_bottom = 651.0
+
+[node name="ColorRect" type="ColorRect" parent="Control2/TabBar/backpack"]
+layout_mode = 0
+offset_left = 139.161
+offset_top = 129.564
+offset_right = 179.161
+offset_bottom = 169.564
+
+[node name="bag" type="Control" parent="Control2/TabBar"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -588.885
+offset_right = -548.885
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Control2/TabBar/bag"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 538.0
+offset_bottom = 651.0
+
+[node name="ColorRect" type="ColorRect" parent="Control2/TabBar/bag"]
+layout_mode = 0
+offset_left = 139.161
+offset_top = 129.564
+offset_right = 179.161
+offset_bottom = 169.564
+
+[node name="bag 2" type="Control" parent="Control2/TabBar"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -588.885
+offset_right = -548.885
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Control2/TabBar/bag 2"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 538.0
+offset_bottom = 651.0
+
+[node name="ColorRect" type="ColorRect" parent="Control2/TabBar/bag 2"]
+layout_mode = 0
+offset_left = 139.161
+offset_top = 129.564
+offset_right = 179.161
+offset_bottom = 169.564
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="background" type="ColorRect" parent="Control3"]
+layout_mode = 2
+anchor_left = 0.695
+anchor_top = 0.239999
+anchor_right = 0.695
+anchor_bottom = 0.239999
+offset_left = 278.2
+offset_top = 24.4
+offset_right = 816.2
+offset_bottom = 641.4
+color = Color(0.180392, 0.180392, 0.180392, 0.239216)
+metadata/_edit_use_anchors_ = true
+
+[node name="TabBar" type="TabBar" parent="Control3"]
+layout_mode = 2
+anchor_left = 0.677866
+anchor_top = 0.075
+anchor_right = 0.677866
+anchor_bottom = 0.075
+offset_left = 280.0
+offset_top = -3.0
+offset_right = 817.0
+offset_bottom = 31.0
+drag_to_rearrange_enabled = true
+tab_count = 3
+tab_0/title = "Inventory"
+tab_1/title = "External Storage 1"
+tab_2/title = "journal"
+script = ExtResource("2_pn3o5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Inventory" type="Control" parent="Control3/TabBar"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_bsmxy")
+
+[node name="GridContainer" type="GridContainer" parent="Control3/TabBar/Inventory"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 38.0
+offset_right = 367.0
+offset_bottom = 438.0
+scale = Vector2(1.45, 1.45)
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 9
+
+[node name="Panel1" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="TextureRect" type="TextureRect" parent="Control3/TabBar/Inventory/GridContainer/Panel1"]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = SubResource("AtlasTexture_f5flx")
+
+[node name="Panel2" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel3" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel4" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel5" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel6" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel7" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel8" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel9" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel10" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel11" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel12" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel13" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel14" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel15" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel16" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel17" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel18" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel19" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel20" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel21" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel22" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel23" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel24" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel25" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel26" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel27" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel28" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel29" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel30" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel31" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel32" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel33" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel34" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel35" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel36" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel37" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel38" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel39" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel40" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel41" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel42" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel43" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel44" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel45" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel46" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel47" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel48" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel49" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel50" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel51" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel52" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel53" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel54" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel55" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel56" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel57" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel58" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel59" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel60" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel61" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel62" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel63" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel64" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel65" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel66" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel67" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel68" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel69" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel70" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel71" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel72" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel73" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel74" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel75" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel76" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel77" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel78" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel79" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel80" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel81" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel82" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel83" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel84" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel85" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel86" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel87" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel88" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel89" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="Panel90" type="Panel" parent="Control3/TabBar/Inventory/GridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5wwe0")
+script = ExtResource("5_2b6yj")
+
+[node name="External Storage 1" type="Control" parent="Control3/TabBar"]
+visible = false
+anchors_preset = 0
+offset_left = -3.05176e-05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Control3/TabBar/External Storage 1"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 538.0
+offset_bottom = 651.0
+
+[node name="ColorRect" type="ColorRect" parent="Control3/TabBar/External Storage 1"]
+layout_mode = 0
+offset_left = 139.161
+offset_top = 129.564
+offset_right = 179.161
+offset_bottom = 169.564
+color = Color(1, 0, 1, 1)
+
+[node name="journal" type="Control" parent="Control3/TabBar"]
+visible = false
+anchors_preset = 0
+offset_left = -3.05176e-05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Control3/TabBar/journal"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 538.0
+offset_bottom = 651.0
+
+[node name="ColorRect" type="ColorRect" parent="Control3/TabBar/journal"]
+layout_mode = 0
+offset_left = 139.161
+offset_top = 129.564
+offset_right = 179.161
+offset_bottom = 169.564
+color = Color(0, 0.270588, 1, 1)
+
+[connection signal="tab_changed" from="Control/TabBar" to="Control/TabBar" method="_on_tab_changed"]
+[connection signal="tab_changed" from="Control2/TabBar" to="Control2/TabBar" method="_on_tab_changed"]
+[connection signal="tab_changed" from="Control3/TabBar" to="Control3/TabBar" method="_on_tab_changed"]

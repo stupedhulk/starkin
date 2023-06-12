@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6hucthkifg78"
+path="res://.godot/imported/Comfortable Mystery.mp3-bbfa05d9699a26f0ead86f60bd3b895e.mp3str"
+
+[deps]
+
+source_file="res://music/Comfortable Mystery.mp3"
+dest_files=["res://.godot/imported/Comfortable Mystery.mp3-bbfa05d9699a26f0ead86f60bd3b895e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

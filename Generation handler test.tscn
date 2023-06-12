@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://cwnrlma611snn"]
+
+[ext_resource type="Script" path="res://chunk handler test.gd" id="1_orf7c"]
+[ext_resource type="Script" path="res://scripts/Camera Orbit Point.gd" id="2_meqmd"]
+[ext_resource type="Script" path="res://scripts/sky lighting test.gd" id="3_8ocal"]
+[ext_resource type="Texture2D" uid="uid://d2tc3egyk3v7d" path="res://Textures/Sun.png" id="4_s3ut7"]
+[ext_resource type="Texture2D" uid="uid://gdaw3yskhks2" path="res://Textures/b44d6e85f221.png" id="5_1bwcr"]
+[ext_resource type="PackedScene" uid="uid://d2cmwyonljlhq" path="res://slider.tscn" id="6_iiihh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_is7bk"]
+
+[sub_resource type="Sky" id="Sky_osj3s"]
+sky_material = SubResource("ProceduralSkyMaterial_is7bk")
+
+[sub_resource type="Environment" id="Environment_sqdql"]
+background_mode = 2
+sky = SubResource("Sky_osj3s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtxln"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_s3ut7")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_heoj6"]
+material = SubResource("StandardMaterial3D_wtxln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnfi3"]
+transparency = 1
+albedo_texture = ExtResource("5_1bwcr")
+emission_enabled = true
+emission_energy_multiplier = 0.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_lj3i6"]
+material = SubResource("StandardMaterial3D_gnfi3")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sqdql")
+
+[node name="chunk" type="Node3D" parent="."]
+script = ExtResource("1_orf7c")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 852.0
+offset_top = 997.0
+offset_right = 979.0
+offset_bottom = 1038.0
+text = "Generate Mesh"
+
+[node name="VSlider" type="VSlider" parent="."]
+offset_left = 1875.0
+offset_top = 229.0
+offset_right = 1891.0
+offset_bottom = 755.0
+step = 0.01
+value = 50.0
+
+[node name="Camera Orbit Point" type="Node3D" parent="."]
+script = ExtResource("2_meqmd")
+
+[node name="Camera3D" type="Camera3D" parent="Camera Orbit Point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.4522)
+
+[node name="sky lighting" type="Node3D" parent="."]
+script = ExtResource("3_8ocal")
+
+[node name="Sun" type="DirectionalLight3D" parent="sky lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.697415, 0.716667, 0, -0.716667, 0.697415, 0, 0, 0)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+shadow_enabled = true
+shadow_blur = 10.0
+
+[node name="sun" type="MeshInstance3D" parent="sky lighting/Sun"]
+transform = Transform3D(-500, 0, -7.54979e-05, 0, 500, 0, 7.54979e-05, 0, -500, 0, 0, 950)
+mesh = SubResource("QuadMesh_heoj6")
+
+[node name="Planet" type="MeshInstance3D" parent="sky lighting"]
+transform = Transform3D(-1000, 0, -0.000150996, 0, 1000, 0, 0.000150996, 0, -1000, 0, 0, 900)
+mesh = SubResource("QuadMesh_lj3i6")
+skeleton = NodePath("../Sun")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+layout_mode = 0
+offset_right = 436.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.172549)
+
+[node name="Sun Angle" parent="GUI" instance=ExtResource("6_iiihh")]
+label = "Sun Angle"
+value_display_end = "°"
+max_value = 360
+
+[connection signal="pressed" from="Button" to="chunk" method="_on_button_pressed"]
+[connection signal="value_changed" from="GUI/Sun Angle" to="sky lighting" method="_on_sun_angle_value_changed"]

@@ -1,0 +1,274 @@
+[gd_scene load_steps=16 format=3 uid="uid://ebmmi4macr3t"]
+
+[ext_resource type="Script" path="res://scripts/world manager.gd" id="1_ids67"]
+[ext_resource type="PackedScene" uid="uid://87frj1tbukle" path="res://Player.tscn" id="2_l0x45"]
+[ext_resource type="PackedScene" uid="uid://ve7sxvynr2pa" path="res://assets/inventory.tscn" id="3_avfd0"]
+[ext_resource type="Script" path="res://scripts/chunks.gd" id="3_hik2i"]
+[ext_resource type="Texture2D" uid="uid://d2tc3egyk3v7d" path="res://Textures/Sun.png" id="4_8tfpt"]
+[ext_resource type="Sky" uid="uid://dlnav6rgsk1lu" path="res://skys/surface world 1.tres" id="4_h7qmo"]
+[ext_resource type="Script" path="res://scripts/clouds.gd" id="5_ow8m7"]
+[ext_resource type="Texture2D" uid="uid://gdaw3yskhks2" path="res://Textures/b44d6e85f221.png" id="5_vf80a"]
+[ext_resource type="Script" path="res://scripts/return to menu button.gd" id="8_74iq8"]
+[ext_resource type="Script" path="res://Teleport.gd" id="9_h3joj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkt6v"]
+transparency = 1
+albedo_texture = ExtResource("4_8tfpt")
+emission_enabled = true
+emission_energy_multiplier = 0.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_4x276"]
+material = SubResource("StandardMaterial3D_wkt6v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skxj0"]
+transparency = 1
+albedo_texture = ExtResource("5_vf80a")
+emission_enabled = true
+emission_energy_multiplier = 0.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_oni5k"]
+material = SubResource("StandardMaterial3D_skxj0")
+
+[sub_resource type="Environment" id="2"]
+background_mode = 2
+background_energy_multiplier = 3.0
+sky = ExtResource("4_h7qmo")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ids67")
+music = false
+
+[node name="Player" parent="." instance=ExtResource("2_l0x45")]
+
+[node name="Inventory" parent="Player" instance=ExtResource("3_avfd0")]
+visible = false
+
+[node name="sky lighting" type="Node3D" parent="Player"]
+
+[node name="Sun" type="DirectionalLight3D" parent="Player/sky lighting"]
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+shadow_enabled = true
+shadow_blur = 10.0
+
+[node name="sun" type="MeshInstance3D" parent="Player/sky lighting/Sun"]
+transform = Transform3D(-500, 0, -7.54979e-05, 0, 500, 0, 7.54979e-05, 0, -500, 0, 0, 950)
+mesh = SubResource("QuadMesh_4x276")
+
+[node name="Planet" type="MeshInstance3D" parent="Player/sky lighting"]
+process_priority = -1
+transform = Transform3D(-1000, 0, -0.000150996, 0, 1000, 0, 0.000150996, 0, -1000, 0, 0, 900)
+mesh = SubResource("QuadMesh_oni5k")
+skeleton = NodePath("../Sun")
+
+[node name="Menu" type="Control" parent="Player"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Main Color" type="ColorRect" parent="Player/Menu"]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 89.0
+offset_right = 1539.0
+offset_bottom = 868.0
+color = Color(0, 0, 0, 0.172549)
+
+[node name="Button" type="Button" parent="Player/Menu/Main Color"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 695.0
+offset_right = 688.0
+offset_bottom = 760.0
+text = "Return To Menu"
+script = ExtResource("8_74iq8")
+
+[node name="Commands" type="ColorRect" parent="Player/Menu/Main Color"]
+layout_mode = 0
+offset_right = 1161.0
+offset_bottom = 238.0
+color = Color(0, 0, 0, 0.172549)
+
+[node name="X Input" type="TextEdit" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 46.0
+offset_right = 190.0
+offset_bottom = 81.0
+text = "0"
+
+[node name="Y Input" type="TextEdit" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 95.0
+offset_right = 190.0
+offset_bottom = 130.0
+text = "0"
+
+[node name="Z Input" type="TextEdit" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 146.0
+offset_right = 190.0
+offset_bottom = 181.0
+text = "0"
+
+[node name="Teleport" type="Button" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 194.0
+offset_right = 190.0
+offset_bottom = 229.0
+text = "Teleport"
+script = ExtResource("9_h3joj")
+
+[node name="teleport" type="Label" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 12.0
+offset_right = 188.0
+offset_bottom = 35.0
+text = "Teleport"
+horizontal_alignment = 1
+
+[node name="X" type="Label" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 52.0
+offset_right = 40.0
+offset_bottom = 78.0
+text = "X:"
+horizontal_alignment = 1
+
+[node name="Y" type="Label" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 100.0
+offset_right = 40.0
+offset_bottom = 126.0
+text = "Y:"
+horizontal_alignment = 1
+
+[node name="Z" type="Label" parent="Player/Menu/Main Color/Commands"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 149.0
+offset_right = 40.0
+offset_bottom = 175.0
+text = "Z:"
+horizontal_alignment = 1
+
+[node name="chunks" type="StaticBody3D" parent="."]
+script = ExtResource("3_hik2i")
+render_distance = 100
+debug = false
+benchmark = false
+benchmark_per_block = false
+override_player_pos = false
+player_pos_override = Vector3(89, -192, -50)
+
+[node name="clouds" type="Node3D" parent="."]
+script = ExtResource("5_ow8m7")
+debug = false
+deep_debug = false
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Music" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 883.0
+offset_top = 1048.0
+offset_right = 989.0
+offset_bottom = 1074.0
+text = "Current Song:"
+
+[node name="controlls" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 821.0
+offset_right = 412.0
+offset_bottom = 1081.0
+text = "Space: jump
+Double space: fly
+WASD: move character
+Arrow Keys: move camera
+E: open inventory (non functional)
+C: diplay credits
+F1: toggle collision
+F2: debug data
+F3: visual block placement
+F4: hide GUI"
+
+[node name="Credits" type="Label" parent="GUI"]
+visible = false
+layout_mode = 0
+offset_left = 1126.0
+offset_top = 3.0
+offset_right = 1918.0
+offset_bottom = 575.0
+text = "Credits:
+
+Music:
+\"Mana Two - Part 1\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Mana Two - Part 2\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Mana Two - Part 3\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Air Prelude\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Supernatural\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Comfortable Mystery\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Water Prelude\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+\"Mystic Force\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+horizontal_alignment = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("2")
+
+[node name="Pregen Screen" type="ColorRect" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Pregen Screen"]
+layout_mode = 0
+offset_left = 819.0
+offset_top = 523.0
+offset_right = 1005.0
+offset_bottom = 564.0
+text = "Pre loading chunks..."

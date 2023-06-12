@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://damtsl7dj0ian"]
+
+[ext_resource type="Script" path="res://scripts/greedy mesh test.gd" id="1_xkobp"]
+[ext_resource type="PackedScene" uid="uid://87frj1tbukle" path="res://Player.tscn" id="2_msg8d"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_xkobp")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_msg8d")]

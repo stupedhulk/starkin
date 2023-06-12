@@ -1,0 +1,7 @@
+[gd_resource type="Sky" load_steps=2 format=3 uid="uid://dlnav6rgsk1lu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gwekw"]
+sun_angle_max = 56.67
+
+[resource]
+sky_material = SubResource("ProceduralSkyMaterial_gwekw")

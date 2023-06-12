@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://dov0qaq7ft5rd"]
+
+[ext_resource type="Texture2D" uid="uid://caji1asi83jgv" path="res://Textures/slot spriteshete.png" id="1_mjsc3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0ryj"]
+atlas = ExtResource("1_mjsc3")
+region = Rect2(0, 0, 20, 20)
+
+[resource]
+texture = SubResource("AtlasTexture_h0ryj")

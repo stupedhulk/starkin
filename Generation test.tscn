@@ -1,0 +1,158 @@
+[gd_scene load_steps=15 format=3 uid="uid://llrffyqtqymf"]
+
+[ext_resource type="Script" path="res://scripts/chunk test.gd" id="1_wqtd4"]
+[ext_resource type="Script" path="res://scripts/Camera Orbit Point.gd" id="2_qdkil"]
+[ext_resource type="Script" path="res://scripts/sky lighting test.gd" id="3_3hm53"]
+[ext_resource type="Texture2D" uid="uid://d2tc3egyk3v7d" path="res://Textures/Sun.png" id="3_pitaq"]
+[ext_resource type="Texture2D" uid="uid://gdaw3yskhks2" path="res://Textures/b44d6e85f221.png" id="4_gnw1y"]
+[ext_resource type="PackedScene" uid="uid://d2cmwyonljlhq" path="res://slider.tscn" id="6_3oo7k"]
+[ext_resource type="PackedScene" uid="uid://ribpt27en4t0" path="res://drop_down.tscn" id="7_cw1v2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_is7bk"]
+
+[sub_resource type="Sky" id="Sky_osj3s"]
+sky_material = SubResource("ProceduralSkyMaterial_is7bk")
+
+[sub_resource type="Environment" id="Environment_sqdql"]
+background_mode = 2
+sky = SubResource("Sky_osj3s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtxln"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_pitaq")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_heoj6"]
+material = SubResource("StandardMaterial3D_wtxln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnfi3"]
+transparency = 1
+albedo_texture = ExtResource("4_gnw1y")
+emission_enabled = true
+emission_energy_multiplier = 0.0
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_lj3i6"]
+material = SubResource("StandardMaterial3D_gnfi3")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sqdql")
+
+[node name="chunk" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -16, -16)
+script = ExtResource("1_wqtd4")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 852.0
+offset_top = 997.0
+offset_right = 979.0
+offset_bottom = 1038.0
+text = "Generate Mesh"
+
+[node name="VSlider" type="VSlider" parent="."]
+offset_left = 1875.0
+offset_top = 229.0
+offset_right = 1891.0
+offset_bottom = 755.0
+step = 0.01
+value = 50.0
+
+[node name="Camera Orbit Point" type="Node3D" parent="."]
+script = ExtResource("2_qdkil")
+
+[node name="Camera3D" type="Camera3D" parent="Camera Orbit Point"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.4522)
+
+[node name="sky lighting" type="Node3D" parent="."]
+script = ExtResource("3_3hm53")
+
+[node name="Sun" type="DirectionalLight3D" parent="sky lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.697415, 0.716667, 0, -0.716667, 0.697415, 0, 0, 0)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+shadow_enabled = true
+shadow_blur = 10.0
+
+[node name="sun" type="MeshInstance3D" parent="sky lighting/Sun"]
+transform = Transform3D(-500, 0, -7.54979e-05, 0, 500, 0, 7.54979e-05, 0, -500, 0, 0, 950)
+mesh = SubResource("QuadMesh_heoj6")
+
+[node name="Planet" type="MeshInstance3D" parent="sky lighting"]
+transform = Transform3D(-1000, 0, -0.000150996, 0, 1000, 0, 0.000150996, 0, -1000, 0, 0, 900)
+mesh = SubResource("QuadMesh_lj3i6")
+skeleton = NodePath("../Sun")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+layout_mode = 0
+offset_right = 436.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.172549)
+
+[node name="Sun Angle" parent="GUI" instance=ExtResource("6_3oo7k")]
+label = "Sun Angle"
+value_display_end = "°"
+max_value = 360
+
+[node name="Chunk PosX" parent="GUI" instance=ExtResource("6_3oo7k")]
+offset_top = 29.0
+offset_bottom = 69.0
+label = "Chunk Pos.x"
+min_value = -100
+max_value = 100
+default_value = -1
+
+[node name="Chunk PosY" parent="GUI" instance=ExtResource("6_3oo7k")]
+offset_top = 59.0
+offset_bottom = 99.0
+label = "Chunk Pos.y"
+min_value = -100
+max_value = 100
+default_value = 41
+
+[node name="Chunk PosZ" parent="GUI" instance=ExtResource("6_3oo7k")]
+offset_top = 90.0
+offset_bottom = 130.0
+label = "Chunk Pos.z"
+min_value = -100
+max_value = 100
+
+[node name="Generation Type" parent="GUI" instance=ExtResource("7_cw1v2")]
+offset_top = 148.0
+offset_right = 354.0
+offset_bottom = 179.0
+text = "Generation Algorithm"
+items = ["starkin", "semirealistic", "cake", "pillars", "lava lamp", "This One Seems Interesting", "blobs", "clouds", "dank uncle chunky", "random seed", "flat"]
+minimal_distance = 180
+spacing = 0
+dropdown_length = 174
+
+[node name="Build Type" parent="GUI" instance=ExtResource("7_cw1v2")]
+offset_top = 185.0
+offset_right = 354.0
+offset_bottom = 219.0
+text = "Build Algorithm"
+items = ["basic", "greedy mesh + edgeless WIP", "greedy mesh WIP", "edgeless"]
+minimal_distance = 180
+spacing = 0
+dropdown_length = 174
+
+[connection signal="pressed" from="Button" to="chunk" method="generate_chunk"]
+[connection signal="value_changed" from="GUI/Sun Angle" to="sky lighting" method="_on_sun_angle_value_changed"]
+[connection signal="drag_ended" from="GUI/Chunk PosX" to="chunk" method="_on_chunk_pos_x_drag_ended"]
+[connection signal="value_changed" from="GUI/Chunk PosX" to="chunk" method="_on_chunk_pos_x_value_changed"]
+[connection signal="drag_ended" from="GUI/Chunk PosY" to="chunk" method="_on_chunk_pos_y_drag_ended"]
+[connection signal="value_changed" from="GUI/Chunk PosY" to="chunk" method="_on_chunk_pos_y_value_changed"]
+[connection signal="drag_ended" from="GUI/Chunk PosZ" to="chunk" method="_on_chunk_pos_z_drag_ended"]
+[connection signal="value_changed" from="GUI/Chunk PosZ" to="chunk" method="_on_chunk_pos_z_value_changed"]
+[connection signal="changed" from="GUI/Generation Type" to="chunk" method="_on_generation_type_changed"]
+[connection signal="changed" from="GUI/Build Type" to="chunk" method="_on_build_type_changed"]

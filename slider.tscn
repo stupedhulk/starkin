@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2cmwyonljlhq"]
+
+[ext_resource type="Script" path="res://scripts/Slider.gd" id="1_t3ihb"]
+
+[node name="Custom Slider" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_t3ihb")
+max_value = 10
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = 133.0
+offset_bottom = 54.0
+text = "Text
+"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 28.0
+offset_right = 397.0
+offset_bottom = 54.0
+text = "0°"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 33.0
+offset_right = 376.0
+offset_bottom = 49.0
+max_value = 180.0
+
+[connection signal="drag_ended" from="HSlider" to="." method="_on_slider_drag_ended"]
+[connection signal="drag_started" from="HSlider" to="." method="_on_h_slider_drag_started"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_slider_value_changed"]

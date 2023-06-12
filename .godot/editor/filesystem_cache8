@@ -1,0 +1,82 @@
+bdbec74c6e5bd72edee867077d70896c
+::res://::1686349834
+ARIAL.TTF::FontFile::5246573672988846364::1668575316::1675140557::1::::<><>::
+block.tscn::PackedScene::-1::1680844725::0::1::::<><>::res://scripts/block.gd
+chunk.tres::StandardMaterial3D::6540909283769670870::1686163616::0::1::::<><>::uid://cspltkdcta3y8
+defult.tres::Environment::-1::1675140535::0::1::::<><>::
+drop_down.tscn::PackedScene::1209813908893564667::1686332190::0::1::::<><>::res://scripts/drop_down.gd
+export_presets.cfg::TextFile::-1::1683057557::0::1::::<><>::
+Generation test.tscn::PackedScene::795826853604639021::1686334386::0::1::::<><>::res://scripts/chunk test.gd<>res://scripts/Camera Orbit Point.gd<>res://scripts/sky lighting test.gd<>uid://d2tc3egyk3v7d<>uid://gdaw3yskhks2<>uid://d2cmwyonljlhq<>uid://ribpt27en4t0
+greedy mesh test.tscn::PackedScene::7185220978620789477::1686332190::0::1::::<><>::res://scripts/greedy mesh test.gd<>uid://87frj1tbukle
+icon.png::CompressedTexture2D::4626496513320802843::1665538191::1675140660::1::::<><>::
+menu.tscn::PackedScene::5583434231481818556::1686334386::0::1::::<><>::res://scripts/menu.gd<>res://scripts/Settings.gd<>uid://ribpt27en4t0<>uid://d1h56l7ng35x4<>res://scripts/Worlds.gd
+normal map.png::CompressedTexture2D::1166682415062606233::1678819248::1678819216::1::::<><>::
+openxr_action_map.tres::OpenXRActionMap::1657780665665895642::1683134062::0::1::::<><>::
+Player.tscn::PackedScene::2382626385385670578::1686334386::0::1::::<><>::res://scripts/Player.gd<>uid://caji1asi83jgv<>res://scripts/Slot.gd<>uid://cspltkdcta3y8
+side_view.tscn::PackedScene::1435303820472751987::1686334386::0::1::::<><>::res://scripts/Window.gd
+slider.tscn::PackedScene::9059258758986794562::1685912773::0::1::::<><>::res://scripts/Slider.gd
+Teleport.gd::GDScript::-1::1685913445::0::1::::<>Button<>::
+World.tscn::PackedScene::283570251277699167::1686335219::0::1::::<><>::res://scripts/world manager.gd<>uid://87frj1tbukle<>uid://ve7sxvynr2pa<>res://scripts/chunks.gd<>uid://d2tc3egyk3v7d<>uid://dlnav6rgsk1lu<>res://scripts/clouds.gd<>uid://gdaw3yskhks2<>res://scripts/return to menu button.gd<>res://Teleport.gd
+::res://assets/::1686332190
+inventory.tscn::PackedScene::1484199557060202626::1686332190::0::1::::<><>::res://scripts/main.gd<>res://scripts/Tabs.gd<>res://scripts/Inventory.gd<>uid://caji1asi83jgv<>res://scripts/Slot.gd<>uid://cspltkdcta3y8
+slot stylebox.tres::StyleBoxTexture::-1::1680844607::0::1::::<><>::
+::res://music/::1683504292
+Air Prelude.mp3::AudioStreamMP3::667230152016364165::1673246963::1681345343::1::::<><>::
+Comfortable Mystery.mp3::AudioStreamMP3::6964365085109296673::1683504291::1683504292::1::::<><>::
+Mana Two - Part 1.mp3::AudioStreamMP3::1486656446103144407::1673239943::1681345345::1::::<><>::
+Mana Two - Part 2.mp3::AudioStreamMP3::5376097062854422741::1673244828::1681345348::1::::<><>::
+Mana Two - Part 3.mp3::AudioStreamMP3::4844501170380893672::1673239948::1681345347::1::::<><>::
+Mystic Force.mp3::AudioStreamMP3::602522750442875587::1683504154::1683504161::1::::<><>::
+Supernatural.mp3::AudioStreamMP3::603769992957935248::1673246839::1681345341::1::::<><>::
+Water Prelude.mp3::AudioStreamMP3::1523724053122063830::1683504193::1683504193::1::::<><>::
+::res://scripts/::1686334099
+block texture.gd::GDScript::-1::1675140531::0::1::::<>CSGBox3D<>::
+block.gd::GDScript::-1::1675140535::0::1::::<>StaticBody3D<>::
+Camera Orbit Point.gd::GDScript::-1::1685557058::0::1::::<>Node3D<>::
+chunk test.gd::GDScript::-1::1685974108::0::1::::<>CSGMesh3D<>::
+chunk viewer.gd::GDScript::-1::1683132252::0::1::::<>MeshInstance3D<>::
+chunk.gd::GDScript::-1::1683132583::0::1::::<>CSGMesh3D<>::
+chunks.gd::GDScript::-1::1686334099::0::1::::<>StaticBody3D<>::
+cloud.gd::GDScript::-1::1682698063::0::1::::<>CSGMesh3D<>::
+clouds.gd::GDScript::-1::1685659821::0::1::::<>Node3D<>::
+delete world button.gd::GDScript::-1::1683823486::0::1::::<>Node<>::
+drop_down.gd::GDScript::-1::1685834919::0::1::::<>Control<>::
+greedy mesh test.gd::GDScript::-1::1682526567::0::1::::<>Node3D<>::
+Inventory.gd::GDScript::-1::1683508567::0::1::::<>Control<>::
+LeftHand.gd::GDScript::-1::1683221671::0::1::::<>RefCounted<>::
+main.gd::GDScript::-1::1681222921::0::1::::<>Node2D<>::
+menu.gd::GDScript::-1::1686158696::0::1::::<>Control<>::
+Player.gd::GDScript::-1::1686154687::0::1::::<>CharacterBody3D<>::
+return to menu button.gd::GDScript::-1::1685912707::0::1::::<>Button<>::
+Settings.gd::GDScript::-1::1686158662::0::1::::<>Control<>::
+sky lighting test.gd::GDScript::-1::1685655167::0::1::::<>Node3D<>::
+sky lighting.gd::GDScript::-1::1678992448::0::1::::<>Node3D<>::
+Slider.gd::GDScript::-1::1685660143::0::1::::<>Control<>::
+Slot.gd::GDScript::-1::1683136819::0::1::::<>Panel<>::
+Tabs.gd::GDScript::-1::1680680618::0::1::::<>TabBar<>::
+Test (1).gd::GDScript::-1::1675140532::0::1::::<>Label<>::
+VR Handler.gd::GDScript::-1::1675140540::0::1::::<>CharacterBody3D<>::
+Window.gd::GDScript::-1::1675269619::0::1::::<>Window<>::
+world button.gd::GDScript::-1::1683827094::0::1::::<>Button<>::
+world manager.gd::GDScript::-1::1683515479::0::1::::<>Node3D<>::
+Worlds.gd::GDScript::-1::1685913077::0::1::::<>Control<>::
+::res://scripts/Singletons/::1686335219
+block models.gd::GDScript::-1::1683132252::0::1::::<>Node<>::
+Files.gd::GDScript::-1::1686158942::0::1::::<>Node<>::
+generation.gd::GDScript::-1::1686335219::0::1::::<>Node<>::
+Main.gd::GDScript::-1::1679511062::0::1::::<>Node<>::
+::res://skys/::1686332189
+surface world 1.tres::Sky::7958215398355058914::1686332189::0::1::::<><>::
+the below.tres::Sky::7268691745679931353::1686332189::0::1::::<><>::
+::res://structures/::1682615275
+::res://Textures/::1686322573
+blocks simplified.png::CompressedTexture2D::7572491854949908186::1686162401::1686163357::1::::<><>::
+blocks.png::CompressedTexture2D::6067908566170514929::1682743156::1683131210::1::::<><>::
+blocksV1.png::CompressedTexture2D::3959675166744860717::1682743156::1686163266::1::::<><>::
+image.png::CompressedTexture2D::9000500127131016707::1680674038::1680674044::1::::<><>::
+map.png::CompressedTexture2D::6334002884976220328::1684512290::1684512580::1::::<><>::
+slot spriteshete.png::CompressedTexture2D::4791952961971572213::1680818538::1680844689::1::::<><>::
+sr265ce4288f1f5.png::CompressedTexture2D::248676133555517184::1682740062::1682740143::1::::<><>::
+starkin.png::CompressedTexture2D::487763670176860775::1682739980::1686322573::1::::<><>::
+Sun.png::CompressedTexture2D::9093755663315349783::1652363962::1682745248::1::::<><>::
+test.png::CompressedTexture2D::1238738969769238792::1677617643::1677617717::1::::<><>::
