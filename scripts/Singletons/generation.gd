@@ -16,57 +16,32 @@ var block_models = BlockModels
 
 var cloud = {
 	Vector3(-1, -1, -2):"cloud",Vector3(-1, -1, -3):"cloud",Vector3(-1, 0, -1):"cloud",
-	Vector3(-1, 0, -2):"cloud",Vector3(-1, 0, -3):"cloud",Vector3(-1, 0, -4):"cloud",
-	Vector3(-1, 0, -5):"cloud",Vector3(-1, 0, -6):"cloud",Vector3(-1, 0, 0):"cloud",
-	Vector3(-1, 1, -1):"cloud",Vector3(-1, 1, -2):"cloud",Vector3(-1, 1, -3):"cloud",
-	Vector3(-1, 1, -4):"cloud",Vector3(-1, 1, -5):"cloud",Vector3(-1, 1, 0):"cloud",
-	Vector3(-1, 2, -1):"cloud",Vector3(-1, 2, -2):"cloud",Vector3(-1, 2, -3):"cloud",
-	Vector3(-2, 0, -2):"cloud",Vector3(-2, 0, -3):"cloud",Vector3(-2, 0, -4):"cloud",
-	Vector3(-2, 1, -2):"cloud",Vector3(-2, 1, -3):"cloud",Vector3(0, -1, -1):"cloud",
-	Vector3(0, -1, -2):"cloud",Vector3(0, -1, -3):"cloud",Vector3(0, -1, -4):"cloud",
-	Vector3(0, -1, -5):"cloud",Vector3(0, 0, -1):"cloud",Vector3(0, 0, -2):"cloud",
-	Vector3(0, 0, -3):"cloud",Vector3(0, 0, -4):"cloud",Vector3(0, 0, -5):"cloud",
-	Vector3(0, 0, -6):"cloud",Vector3(0, 0, -7):"cloud",Vector3(0, 0, -8):"cloud",
-	Vector3(0, 0, -9):"cloud",Vector3(0, 0, 0):"cloud",Vector3(0, 0, 1):"cloud",
-	Vector3(0, 0, 2):"cloud",Vector3(0, 1, -1):"cloud",Vector3(0, 1, -2):"cloud",
-	Vector3(0, 1, -3):"cloud",
-	Vector3(0, 1, -4):"cloud",
-	Vector3(0, 1, -5):"cloud",
-	Vector3(0, 1, -6):"cloud",
-	Vector3(0, 1, -7):"cloud",
-	Vector3(0, 1, -8):"cloud",
-	Vector3(0, 1, 0):"cloud",
-	Vector3(0, 1, 1):"cloud",
-	Vector3(0, 2, -1):"cloud",
-	Vector3(0, 2, -2):"cloud",
-	Vector3(0, 2, -3):"cloud",
-	Vector3(0, 2, -4):"cloud",
-	Vector3(0, 2, -5):"cloud",
-	Vector3(0, 2, 0):"cloud",
-	Vector3(1, -1, -3):"cloud",
-	Vector3(1, 0, -1):"cloud",
-	Vector3(1, 0, -2):"cloud",
-	Vector3(1, 0, -3):"cloud",
-	Vector3(1, 0, -4):"cloud",
-	Vector3(1, 0, -5):"cloud",
-	Vector3(1, 0, -6):"cloud",
-	Vector3(1, 0, -7):"cloud",
-	Vector3(1, 0, 0):"cloud",
-	Vector3(1, 1, -1):"cloud",
-	Vector3(1, 1, -2):"cloud",
-	Vector3(1, 1, -3):"cloud",
-	Vector3(1, 1, -4):"cloud",
-	Vector3(1, 1, -5):"cloud",
-	Vector3(1, 1, -6):"cloud",
-	Vector3(1, 2, -2):"cloud",
-	Vector3(1, 2, -3):"cloud",
-	Vector3(1, 2, -4):"cloud",
-	Vector3(2, 0, -1):"cloud",
-	Vector3(2, 0, -2):"cloud",
-	Vector3(2, 0, -3):"cloud",
-	Vector3(2, 0, -4):"cloud",
-	Vector3(2, 1, -2):"cloud",
-	Vector3(2, 1, -3):"cloud"
+	Vector3(-1, 0, -2) :"cloud",Vector3(-1, 0, -3) :"cloud",Vector3(-1, 0, -4):"cloud",
+	Vector3(-1, 0, -5) :"cloud",Vector3(-1, 0, -6) :"cloud",Vector3(-1, 0, 0) :"cloud",
+	Vector3(-1, 1, -1) :"cloud",Vector3(-1, 1, -2) :"cloud",Vector3(-1, 1, -3):"cloud",
+	Vector3(-1, 1, -4) :"cloud",Vector3(-1, 1, -5) :"cloud",Vector3(-1, 1, 0) :"cloud",
+	Vector3(-1, 2, -1) :"cloud",Vector3(-1, 2, -2) :"cloud",Vector3(-1, 2, -3):"cloud",
+	Vector3(-2, 0, -2) :"cloud",Vector3(-2, 0, -3) :"cloud",Vector3(-2, 0, -4):"cloud",
+	Vector3(-2, 1, -2) :"cloud",Vector3(-2, 1, -3) :"cloud",Vector3(0, -1, -1):"cloud",
+	Vector3(0, -1, -2) :"cloud",Vector3(0, -1, -3) :"cloud",Vector3(0, -1, -4):"cloud",
+	Vector3(0, -1, -5) :"cloud",Vector3(0, 0, -1)  :"cloud",Vector3(0, 0, -2) :"cloud",
+	Vector3(0, 0, -3)  :"cloud",Vector3(0, 0, -4)  :"cloud",Vector3(0, 0, -5) :"cloud",
+	Vector3(0, 0, -6)  :"cloud",Vector3(0, 0, -7)  :"cloud",Vector3(0, 0, -8) :"cloud",
+	Vector3(0, 0, -9)  :"cloud",Vector3(0, 0, 0)   :"cloud",Vector3(0, 0, 1)  :"cloud",
+	Vector3(0, 0, 2)   :"cloud",Vector3(0, 1, -1)  :"cloud",Vector3(0, 1, -2) :"cloud",
+	Vector3(0, 1, -3)  :"cloud",Vector3(0, 1, -4)  :"cloud",Vector3(0, 1, -5) :"cloud",
+	Vector3(0, 1, -6)  :"cloud",Vector3(0, 1, -7)  :"cloud",Vector3(0, 1, -8) :"cloud",
+	Vector3(0, 1, 0)   :"cloud",Vector3(0, 1, 1)   :"cloud",Vector3(0, 2, -1) :"cloud",
+	Vector3(0, 2, -2)  :"cloud",Vector3(0, 2, -3)  :"cloud",Vector3(0, 2, -4) :"cloud",
+	Vector3(0, 2, -5)  :"cloud",Vector3(0, 2, 0)   :"cloud",Vector3(1, -1, -3):"cloud",
+	Vector3(1, 0, -1)  :"cloud",Vector3(1, 0, -2)  :"cloud",Vector3(1, 0, -3) :"cloud",
+	Vector3(1, 0, -4)  :"cloud",Vector3(1, 0, -5)  :"cloud",Vector3(1, 0, -6) :"cloud",
+	Vector3(1, 0, -7)  :"cloud",Vector3(1, 0, 0)   :"cloud",Vector3(1, 1, -1) :"cloud",
+	Vector3(1, 1, -2)  :"cloud",Vector3(1, 1, -3)  :"cloud",Vector3(1, 1, -4) :"cloud",
+	Vector3(1, 1, -5)  :"cloud",Vector3(1, 1, -6)  :"cloud",Vector3(1, 2, -2) :"cloud",
+	Vector3(1, 2, -3)  :"cloud",Vector3(1, 2, -4)  :"cloud",Vector3(2, 0, -1) :"cloud",
+	Vector3(2, 0, -2)  :"cloud",Vector3(2, 0, -3)  :"cloud",Vector3(2, 0, -4) :"cloud",
+	Vector3(2, 1, -2)  :"cloud",Vector3(2, 1, -3)  :"cloud"
 }
 
 const block_ids = {
@@ -262,8 +237,15 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 					var pillar_surface = abs(clamp(noise.get_noise_2d((pos.x + relative_pos.x) * 1, 1 * \
 					(pos.z + relative_pos.z)), 0 , 1)) * 10
 					
+					var world_edge = 100
+					#end of the world
+					var test = abs(noise.get_noise_3d(pos.x + chunk_pos.x * chunk_size.x, pos.y + chunk_pos.y * chunk_size.y, pos.z + chunk_pos.z * chunk_size.z))
+					test -= (abs(pos.x + chunk_pos.x*chunk_size.x) - world_edge)/300.0
+					if (abs(pos.x + chunk_pos.x*chunk_size.x) >= world_edge or abs(pos.z + chunk_pos.z*chunk_size.z) >= world_edge) and !test > 0.1:
+						block = null
+					
 					#semirealistic
-					if pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1 and pos.y > low  - chunk_pos.y*chunk_size.y:
+					elif pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1 and pos.y > low  - chunk_pos.y*chunk_size.y:
 						if pos.y <= surface - chunk_pos.y*chunk_size.y - 5:
 							if randi()%1+1 == 1: block = 'stone'
 							else: block = 'cobblestone'
@@ -275,6 +257,7 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 					#pillar
 					elif pillar_surface > ((abs(pos.y/ 1.0 + relative_pos.y)) + pillar_scale*3.2) / pillar_scale and surface > 3:
 						block = 'pillar_placeholder'
+					
 					
 					else: block = null
 						
@@ -1307,9 +1290,14 @@ func get_block_chunk(block_pos):
 
 func get_chunk_data(chunk_pos):
 	if chunk_pos in chunk_data:
-		return chunk_data[chunk_pos]
+		return decode_chunk(chunk_data[chunk_pos])
 	else:
-		return Files.load_chunk_from_file(chunk_pos)
+		var data = Files.load_chunk_from_file(chunk_pos)
+		if data != null:
+			return decode_chunk(data)
+
+func save_chunk_data(chunk_pos, chunk_info):
+	chunk_data[chunk_pos] = encode_chunk(chunk_info)
 
 func generate_ring(ring_size, direction):
 	var positions = []

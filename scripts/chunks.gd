@@ -311,7 +311,7 @@ func load_chunk(data, save):
 	if !get_node_or_null(str(data[0]) + "C"): add_child.call_deferred(collision)
 	
 	if save: 
-		Files.save_chunk_to_file(data[0], data[3])
+		Generation.save_chunk_data(data[0], data[3])
 
 
 
@@ -331,10 +331,10 @@ func place_block_threaded(global_pos, type):
 		if type != null:
 			var temp = chunk_data
 			temp[pos] = type
-			Files.save_chunk_to_file(chunk_pos, temp)
+			Generation.save_chunk_data(chunk_pos, temp)
 		else:
 			chunk_data.erase(pos)
-			Files.save_chunk_to_file(chunk_pos, chunk_data)
+			Generation.save_chunk_data(chunk_pos, chunk_data)
 	
 	update(chunk_pos)
 
