@@ -174,7 +174,7 @@ func chunk_handler(Seed):
 			type = ['semirealistic']
 			var j = 0; var a = render_distance; while Generation.get_block_chunk(player.position) == player_old_chunk and load_chunks and j < a*2:
 				var i = 0; while Generation.get_block_chunk(player.position) == player_old_chunk and load_chunks and i < j:
-					for x in generate_ring((j-i)*2-1, "x"):
+					for x in Generation.generate_ring((j-i)*2-1, "x"):
 						if Input.is_action_just_pressed("update"):
 							load_chunks = false
 						chunk_pos = x + Generation.get_block_chunk(player.position) + Vector3(-j+i+1, -j+i+1, i)
@@ -222,7 +222,7 @@ func chunk_handler(Seed):
 									var function = create_chunk.bind(chunk_pos, Seed, type)
 									thread.start(function, Thread.PRIORITY_NORMAL)
 								#create_chunk(chunk_pos, Seed, type)
-					for x in generate_ring((j-i)*2-1, "x"):
+					for x in Generation.generate_ring((j-i)*2-1, "x"):
 						if Input.is_action_just_pressed("update"):
 							load_chunks = false
 						var player_pos = Generation.get_block_chunk(player.position)

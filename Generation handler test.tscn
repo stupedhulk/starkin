@@ -42,6 +42,7 @@ environment = SubResource("Environment_sqdql")
 
 [node name="chunk" type="Node3D" parent="."]
 script = ExtResource("1_orf7c")
+generate_per_layer = true
 
 [node name="Button" type="Button" parent="."]
 offset_left = 852.0

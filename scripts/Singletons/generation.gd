@@ -274,7 +274,7 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 					
 					#pillar
 					elif pillar_surface > ((abs(pos.y/ 1.0 + relative_pos.y)) + pillar_scale*3.2) / pillar_scale and surface > 3:
-						block = 'stone'
+						block = 'pillar_placeholder'
 					
 					else: block = null
 						
@@ -308,6 +308,7 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 			#pass 2
 			pos = Vector3(-1,-1,-1)
 			caves.fractal_octaves = 9
+			noise.fractal_octaves = 1
 			#looping through each position in the chunk
 			while pos.z < chunk_size.z + 1:
 				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
@@ -321,6 +322,37 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 						blocks[pos] = "grass_stone"
 					
 					
+					if pos in blocks and blocks[pos] == "stone":
+						var value = noise.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
+							
+						if value < 0.95:
+							blocks[pos] = 'stone'
+						else:
+							blocks[pos] = 'bongamite_ore'
+					
+					if pos in blocks and blocks[pos] == "pillar_placeholder":
+						var value = noise.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
+							
+						if value < 0.85:
+							blocks[pos] = 'stone'
+						elif value < 0.9:
+							blocks[pos] = 'munatite_ore_sparce'
+						elif value < 0.95:
+							blocks[pos] = 'munatite_ore'
+						else:
+							blocks[pos] = 'munatite_ore_dence'
+					
+					if pos in reference_blocks and reference_blocks[pos] == "pillar_placeholder":
+						var value = noise.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
+						
+						if value < 0.85:
+							reference_blocks[pos] = 'stone'
+						elif value < 0.9:
+							reference_blocks[pos] = 'munatite_ore_sparce'
+						elif value < 0.95:
+							reference_blocks[pos] = 'munatite_ore'
+						else:
+							reference_blocks[pos] = 'munatite_ore_dence'
 					
 					#getting next position value
 					pos.x += 1
@@ -678,42 +710,87 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 	
 	
 		elif i == "stone world":
-				noise.fractal_octaves = 9
-				caves.fractal_octaves = 5
-			
-				while pos.z < chunk_size.z + 1:
-					if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+			noise.fractal_octaves = 9
+			caves.fractal_octaves = 5
+		
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+					
+					var surface = round(noise.get_noise_2d((pos.x + chunk_pos.x*chunk_size.x)/smooth,\
+							(pos.z + chunk_pos.z*chunk_size.z)/smooth)*scale) + 1320
+					
+					var cave = round(caves.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)/cave_size,\
+							(pos.y + chunk_pos.y*chunk_size.y)/cave_size, \
+							(pos.z + chunk_pos.z*chunk_size.z)/cave_size) * cave_rarity)
+					
+					if pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1:
+						if pos.y <= surface - chunk_pos.y*chunk_size.y - 5:
+							if randi()%1+1 == 1: block = 'stone'
+							else: block = 'cobblestone'
+						elif pos.y == surface - chunk_pos.y*chunk_size.y - 1:
+							block = 'grass_stone'
+						else:
+							block = 'stone'
+						if pos.x >= 0 and pos.x < chunk_size.x \
+						and pos.y >= 0 and pos.y < chunk_size.y\
+						and pos.z >= 0 and pos.z < chunk_size.z:
+							blocks[pos] = block
+						else:
+							reference_blocks[pos] = block
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+			if debug: print("ran: " + i)
+	
+	
+		elif i == "munatite dream":
+			noise.fractal_octaves = 9
+			noise2.fractal_octaves = 1
+			caves.fractal_octaves = 5
+		
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+					
+					var surface = round(noise.get_noise_2d((pos.x + chunk_pos.x*chunk_size.x)/smooth,\
+							(pos.z + chunk_pos.z*chunk_size.z)/smooth)*scale) + 1320
+					
+					var cave = round(caves.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)/cave_size,\
+							(pos.y + chunk_pos.y*chunk_size.y)/cave_size, \
+							(pos.z + chunk_pos.z*chunk_size.z)/cave_size) * cave_rarity)
+					
+					if pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1:
+						var value = noise2.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
 						
-						var surface = round(noise.get_noise_2d((pos.x + chunk_pos.x*chunk_size.x)/smooth,\
-								(pos.z + chunk_pos.z*chunk_size.z)/smooth)*scale) + 1320
-						
-						var cave = round(caves.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)/cave_size,\
-								(pos.y + chunk_pos.y*chunk_size.y)/cave_size, \
-								(pos.z + chunk_pos.z*chunk_size.z)/cave_size) * cave_rarity)
-						
-						if pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1:
-							if pos.y <= surface - chunk_pos.y*chunk_size.y - 5:
-								if randi()%1+1 == 1: block = 'stone'
-								else: block = 'cobblestone'
-							elif pos.y == surface - chunk_pos.y*chunk_size.y - 1:
-								block = 'grass_stone'
-							else:
-								block = 'stone'
-							if pos.x >= 0 and pos.x < chunk_size.x \
-							and pos.y >= 0 and pos.y < chunk_size.y\
-							and pos.z >= 0 and pos.z < chunk_size.z:
-								blocks[pos] = block
-							else:
-								reference_blocks[pos] = block
-						pos.x += 1
-					else:
-						if pos.x >= chunk_size.x + 1:
-							pos.x = -1
-							pos.y += 1
-						if pos.y >= chunk_size.y + 1:
-							pos.y = -1
-							pos.z += 1
-				if debug: print("ran: " + i)
+						if value < 0.85:
+							block = 'stone'
+						elif value < 0.9:
+							block = 'munatite_ore_sparce'
+						elif value < 0.95:
+							block = 'munatite_ore'
+						else:
+							block = 'munatite_ore_dence'
+							
+							
+						if pos.x >= 0 and pos.x < chunk_size.x \
+						and pos.y >= 0 and pos.y < chunk_size.y\
+						and pos.z >= 0 and pos.z < chunk_size.z:
+							blocks[pos] = block
+						else:
+							reference_blocks[pos] = block
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+			if debug: print("ran: " + i)
 	
 	
 	if deep_debug: print(blocks)
@@ -876,6 +953,9 @@ func generate_stucture(pos, structure, debug, deep_debug):
 
 
 func build_chunk_edgeless(blocks, reference_blocks, chunk_pos, Seed, debug, deep_debug):
+	var noise = FastNoiseLite.new()
+	noise.seed = Seed
+	
 	if debug: print('building chunk')
 	
 	var st = SurfaceTool.new()
@@ -939,7 +1019,7 @@ func build_chunk_edgeless(blocks, reference_blocks, chunk_pos, Seed, debug, deep
 				var c = Vector3(.5,.5,.5) + block_pos
 				var d = Vector3(.5,-.5,-.5) + block_pos
 				
-				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 				
 				var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 				var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -958,7 +1038,7 @@ func build_chunk_edgeless(blocks, reference_blocks, chunk_pos, Seed, debug, deep
 				var c = Vector3(-.5,.5,.5) + block_pos
 				var d = Vector3(-.5,-.5,-.5) + block_pos
 				
-				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 				
 				var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 				var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -977,7 +1057,7 @@ func build_chunk_edgeless(blocks, reference_blocks, chunk_pos, Seed, debug, deep
 				var c = Vector3(.5,.5,.5) + block_pos
 				var d = Vector3(-.5,-.5,.5) + block_pos
 				
-				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 				
 				var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 				var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -996,7 +1076,7 @@ func build_chunk_edgeless(blocks, reference_blocks, chunk_pos, Seed, debug, deep
 				var c = Vector3(.5,.5,-.5) + block_pos
 				var d = Vector3(-.5,-.5,-.5) + block_pos
 				
-				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+				var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 				
 				var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 				var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -1031,6 +1111,9 @@ func build_chunk_edgeless(blocks, reference_blocks, chunk_pos, Seed, debug, deep
 	return data
 
 func build_chunk_basic(blocks, reference_blocks, chunk_pos, Seed, debug, deep_debug):
+	var noise = FastNoiseLite.new()
+	noise.seed = Seed
+	
 	if debug: print('building chunk')
 	
 	var st = SurfaceTool.new()
@@ -1089,7 +1172,7 @@ func build_chunk_basic(blocks, reference_blocks, chunk_pos, Seed, debug, deep_de
 					var c = Vector3(.5,.5,.5) + block_pos
 					var d = Vector3(.5,-.5,-.5) + block_pos
 					
-					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 					
 					var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 					var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -1106,7 +1189,7 @@ func build_chunk_basic(blocks, reference_blocks, chunk_pos, Seed, debug, deep_de
 					var c = Vector3(-.5,.5,.5) + block_pos
 					var d = Vector3(-.5,-.5,-.5) + block_pos
 					
-					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 					
 					var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 					var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -1123,7 +1206,7 @@ func build_chunk_basic(blocks, reference_blocks, chunk_pos, Seed, debug, deep_de
 					var c = Vector3(.5,.5,.5) + block_pos
 					var d = Vector3(-.5,-.5,.5) + block_pos
 					
-					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 					
 					var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 					var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -1140,7 +1223,7 @@ func build_chunk_basic(blocks, reference_blocks, chunk_pos, Seed, debug, deep_de
 					var c = Vector3(.5,.5,-.5) + block_pos
 					var d = Vector3(-.5,-.5,-.5) + block_pos
 					
-					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(((block_pos.x + block_pos.y + block_pos.z + chunk_size.x + chunk_size.y + chunk_size.z)*Seed)))%8+1)]
+					var block = BlockModels.TEXTURES[x + '_side_' + str(int(abs(noise.get_noise_3d(block_pos.x*100, block_pos.y*100, block_pos.z*100)*8))%8+1)]
 					
 					var ta = Vector2((1.0/(576.0/16))*(block.x-1), (1.0/(576.0/16))*block.y)
 					var tb = Vector2((1.0/(576.0/16))*block.x, (1.0/(576.0/16))*(block.y-1))
@@ -1228,4 +1311,93 @@ func get_chunk_data(chunk_pos):
 	else:
 		return Files.load_chunk_from_file(chunk_pos)
 
-
+func generate_ring(ring_size, direction):
+	var positions = []
+	
+	var pos = Vector3(0, 0, 0)
+	
+	var x = 1; x=x
+	var z = 1; z=z
+	
+	if ring_size == 1:
+		positions.append(pos)
+	
+	
+	elif direction == 'x':
+		while x <= ring_size - 1:
+			x += 1 
+			pos.x += 1
+			
+			positions.append(pos)
+		var y = 1
+		while y <= ring_size - 1:
+			y += 1
+			pos.y += 1
+			positions.append(pos)
+			
+		x = 1
+		while x <= ring_size - 1:
+			x += 1
+			pos.x -= 1
+			positions.append(pos)
+			
+		y = 1
+		while y <= ring_size - 1:
+			y += 1
+			pos.y -= 1
+			positions.append(pos)
+	
+	
+	
+	elif direction == 'z':
+		while z <= ring_size - 1:
+			z += 1 
+			pos.z += 1
+			
+			positions.append(pos)
+		var y = 1
+		while y <= ring_size - 1:
+			y += 1
+			pos.y += 1
+			positions.append(pos)
+			
+		z = 1
+		while z <= ring_size - 1:
+			z += 1
+			pos.z -= 1
+			positions.append(pos)
+			
+		y = 1
+		while y <= ring_size - 1:
+			y += 1
+			pos.y -= 1
+			positions.append(pos)
+	
+	
+	
+	elif direction == 'xz' or direction == 'zx':
+		while z <= ring_size - 1:
+			z += 1 
+			pos.z += 1
+			
+			positions.append(pos)
+		x = 1
+		while x <= ring_size - 1:
+			x += 1
+			pos.x += 1
+			positions.append(pos)
+			
+		z = 1
+		while z <= ring_size - 1:
+			z += 1
+			pos.z -= 1
+			positions.append(pos)
+			
+		x = 1
+		while x <= ring_size - 1:
+			x += 1
+			pos.x -= 1
+			positions.append(pos)
+	#print(ring_size)
+	#print(positions)
+	return positions

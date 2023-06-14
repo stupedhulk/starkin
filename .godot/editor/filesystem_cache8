@@ -1,24 +1,24 @@
 bdbec74c6e5bd72edee867077d70896c
-::res://::1686589706
+::res://::1686706846
 ARIAL.TTF::FontFile::5246573672988846364::1668575316::1675140557::1::::<><>::
 block.tscn::PackedScene::-1::1680844725::0::1::::<><>::res://scripts/block.gd
-chunk handler test.gd::GDScript::-1::1686353819::0::1::::<>Node3D<>::
+chunk handler test.gd::GDScript::-1::1686676983::0::1::::<>Node3D<>::
 chunk.tres::StandardMaterial3D::6540909283769670870::1686352825::0::1::::<><>::uid://cspltkdcta3y8
 defult.tres::Environment::-1::1675140535::0::1::::<><>::
 drop_down.tscn::PackedScene::1209813908893564667::1686332190::0::1::::<><>::res://scripts/drop_down.gd
 export_presets.cfg::TextFile::-1::1683057557::0::1::::<><>::
-Generation handler test.tscn::PackedScene::6344885302560163167::1686589706::0::1::::<><>::res://chunk handler test.gd<>res://scripts/Camera Orbit Point.gd<>res://scripts/sky lighting test.gd<>uid://d2tc3egyk3v7d<>uid://gdaw3yskhks2<>uid://d2cmwyonljlhq
-Generation test.tscn::PackedScene::795826853604639021::1686589705::0::1::::<><>::res://scripts/chunk test.gd<>res://scripts/Camera Orbit Point.gd<>res://scripts/sky lighting test.gd<>uid://d2tc3egyk3v7d<>uid://gdaw3yskhks2<>uid://d2cmwyonljlhq<>uid://ribpt27en4t0
+Generation handler test.tscn::PackedScene::6344885302560163167::1686706446::0::1::::<><>::res://chunk handler test.gd<>res://scripts/Camera Orbit Point.gd<>res://scripts/sky lighting test.gd<>uid://d2tc3egyk3v7d<>uid://gdaw3yskhks2<>uid://d2cmwyonljlhq
+Generation test.tscn::PackedScene::795826853604639021::1686706846::0::1::::<><>::res://scripts/chunk test.gd<>res://scripts/Camera Orbit Point.gd<>res://scripts/sky lighting test.gd<>uid://d2tc3egyk3v7d<>uid://gdaw3yskhks2<>uid://d2cmwyonljlhq<>uid://ribpt27en4t0
 greedy mesh test.tscn::PackedScene::7185220978620789477::1686332190::0::1::::<><>::res://scripts/greedy mesh test.gd<>uid://87frj1tbukle
 icon.png::CompressedTexture2D::4626496513320802843::1665538191::1675140660::1::::<><>::
-menu.tscn::PackedScene::5583434231481818556::1686589705::0::1::::<><>::res://scripts/menu.gd<>res://scripts/Settings.gd<>uid://ribpt27en4t0<>uid://d1h56l7ng35x4<>res://scripts/Worlds.gd
+menu.tscn::PackedScene::5583434231481818556::1686706446::0::1::::<><>::res://scripts/menu.gd<>res://scripts/Settings.gd<>uid://ribpt27en4t0<>uid://d1h56l7ng35x4<>res://scripts/Worlds.gd
 normal map.png::CompressedTexture2D::1166682415062606233::1678819248::1678819216::1::::<><>::
 openxr_action_map.tres::OpenXRActionMap::1657780665665895642::1683134062::0::1::::<><>::
-Player.tscn::PackedScene::2382626385385670578::1686589705::0::1::::<><>::res://scripts/Player.gd<>uid://caji1asi83jgv<>res://scripts/Slot.gd<>uid://cspltkdcta3y8
-side_view.tscn::PackedScene::1435303820472751987::1686589705::0::1::::<><>::res://scripts/Window.gd
+Player.tscn::PackedScene::2382626385385670578::1686706446::0::1::::<><>::res://scripts/Player.gd<>uid://caji1asi83jgv<>res://scripts/Slot.gd<>uid://cspltkdcta3y8
+side_view.tscn::PackedScene::1435303820472751987::1686706446::0::1::::<><>::res://scripts/Window.gd
 slider.tscn::PackedScene::9059258758986794562::1685912773::0::1::::<><>::res://scripts/Slider.gd
 Teleport.gd::GDScript::-1::1685913445::0::1::::<>Button<>::
-World.tscn::PackedScene::283570251277699167::1686589705::0::1::::<><>::res://scripts/world manager.gd<>uid://87frj1tbukle<>uid://ve7sxvynr2pa<>res://scripts/chunks.gd<>uid://d2tc3egyk3v7d<>uid://dlnav6rgsk1lu<>res://scripts/clouds.gd<>uid://gdaw3yskhks2<>res://scripts/return to menu button.gd<>res://Teleport.gd
+World.tscn::PackedScene::283570251277699167::1686706446::0::1::::<><>::res://scripts/world manager.gd<>uid://87frj1tbukle<>uid://ve7sxvynr2pa<>res://scripts/chunks.gd<>uid://d2tc3egyk3v7d<>uid://dlnav6rgsk1lu<>res://scripts/clouds.gd<>uid://gdaw3yskhks2<>res://scripts/return to menu button.gd<>res://Teleport.gd
 ::res://assets/::1686332190
 inventory.tscn::PackedScene::1484199557060202626::1686332190::0::1::::<><>::res://scripts/main.gd<>res://scripts/Tabs.gd<>res://scripts/Inventory.gd<>uid://caji1asi83jgv<>res://scripts/Slot.gd<>uid://cspltkdcta3y8
 slot stylebox.tres::StyleBoxTexture::-1::1680844607::0::1::::<><>::
@@ -31,14 +31,13 @@ Mana Two - Part 3.mp3::AudioStreamMP3::4844501170380893672::1673239948::16813453
 Mystic Force.mp3::AudioStreamMP3::602522750442875587::1683504154::1683504161::1::::<><>::
 Supernatural.mp3::AudioStreamMP3::603769992957935248::1673246839::1681345341::1::::<><>::
 Water Prelude.mp3::AudioStreamMP3::1523724053122063830::1683504193::1683504193::1::::<><>::
-::res://scripts/::1686353984
+::res://scripts/::1686677080
 block texture.gd::GDScript::-1::1675140531::0::1::::<>CSGBox3D<>::
 block.gd::GDScript::-1::1675140535::0::1::::<>StaticBody3D<>::
 Camera Orbit Point.gd::GDScript::-1::1685557058::0::1::::<>Node3D<>::
-chunk test.gd::GDScript::-1::1685974108::0::1::::<>CSGMesh3D<>::
+chunk test.gd::GDScript::-1::1686594543::0::1::::<>CSGMesh3D<>::
 chunk viewer.gd::GDScript::-1::1683132252::0::1::::<>MeshInstance3D<>::
-chunk.gd::GDScript::-1::1683132583::0::1::::<>CSGMesh3D<>::
-chunks.gd::GDScript::-1::1686353984::0::1::::<>StaticBody3D<>::
+chunks.gd::GDScript::-1::1686677080::0::1::::<>StaticBody3D<>::
 cloud.gd::GDScript::-1::1682698063::0::1::::<>CSGMesh3D<>::
 clouds.gd::GDScript::-1::1685659821::0::1::::<>Node3D<>::
 delete world button.gd::GDScript::-1::1683823486::0::1::::<>Node<>::
@@ -47,7 +46,7 @@ greedy mesh test.gd::GDScript::-1::1682526567::0::1::::<>Node3D<>::
 Inventory.gd::GDScript::-1::1683508567::0::1::::<>Control<>::
 LeftHand.gd::GDScript::-1::1683221671::0::1::::<>RefCounted<>::
 main.gd::GDScript::-1::1681222921::0::1::::<>Node2D<>::
-menu.gd::GDScript::-1::1686158696::0::1::::<>Control<>::
+menu.gd::GDScript::-1::1686592589::0::1::::<>Control<>::
 Player.gd::GDScript::-1::1686154687::0::1::::<>CharacterBody3D<>::
 return to menu button.gd::GDScript::-1::1685912707::0::1::::<>Button<>::
 Settings.gd::GDScript::-1::1686158662::0::1::::<>Control<>::
@@ -62,18 +61,18 @@ Window.gd::GDScript::-1::1675269619::0::1::::<>Window<>::
 world button.gd::GDScript::-1::1683827094::0::1::::<>Button<>::
 world manager.gd::GDScript::-1::1683515479::0::1::::<>Node3D<>::
 Worlds.gd::GDScript::-1::1685913077::0::1::::<>Control<>::
-::res://scripts/Singletons/::1686349983
-block models.gd::GDScript::-1::1683132252::0::1::::<>Node<>::
+::res://scripts/Singletons/::1686706439
+block models.gd::GDScript::-1::1686702190::0::1::::<>Node<>::
 Files.gd::GDScript::-1::1686158942::0::1::::<>Node<>::
-generation.gd::GDScript::-1::1686349983::0::1::::<>Node<>::
+generation.gd::GDScript::-1::1686706439::0::1::::<>Node<>::
 Main.gd::GDScript::-1::1679511062::0::1::::<>Node<>::
-::res://skys/::1686589542
-surface world 1.tres::Sky::7958215398355058914::1686589542::0::1::::<><>::
-the below.tres::Sky::7268691745679931353::1686589542::0::1::::<><>::
+::res://skys/::1686697107
+surface world 1.tres::Sky::7958215398355058914::1686697107::0::1::::<><>::
+the below.tres::Sky::7268691745679931353::1686697107::0::1::::<><>::
 ::res://structures/::1682615275
-::res://Textures/::1686322573
+::res://Textures/::1686706844
 blocks simplified.png::CompressedTexture2D::7572491854949908186::1686162401::1686163357::1::::<><>::
-blocks.png::CompressedTexture2D::6067908566170514929::1686591769::1686591776::1::::<><>::
+blocks.png::CompressedTexture2D::6067908566170514929::1686707674::1686707833::1::::<><>::
 blocksV1.png::CompressedTexture2D::3959675166744860717::1682743156::1686163266::1::::<><>::
 image.png::CompressedTexture2D::9000500127131016707::1680674038::1680674044::1::::<><>::
 map.png::CompressedTexture2D::6334002884976220328::1684512290::1684512580::1::::<><>::

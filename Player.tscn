@@ -59,7 +59,7 @@ shape = SubResource("1")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
-far = 1000.0
+far = 400000.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -0.0024784, -0.999997, 0, 0.999997, -0.0024784, 0, 0, 0)

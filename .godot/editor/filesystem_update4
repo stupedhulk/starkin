@@ -1,13 +1,10 @@
-res://side_view.tscn
+res://Generation handler test.tscn
 res://skys/surface world 1.tres
 res://skys/the below.tres
+res://side_view.tscn
 res://menu.tscn
 res://Player.tscn
 res://World.tscn
 res://Generation test.tscn
-res://Generation handler test.tscn
 res://scripts/Singletons/block models.gd
 res://scripts/Singletons/generation.gd
-res://scripts/chunks.gd
-res://scripts/menu.gd
-res://scripts/chunk test.gd
