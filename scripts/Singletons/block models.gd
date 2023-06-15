@@ -80,6 +80,17 @@ const TEXTURES = {
 	'planks_side_6' : Vector2(61,3),
 	'planks_side_7' : Vector2(62,3),
 	'planks_side_8' : Vector2(63,3),
+	#----Leaves----#
+	'leaves_top'    : Vector2(1,8),
+	'leaves_bottom' : Vector2(1,10),
+	'leaves_side_1' : Vector2(1,9),
+	'leaves_side_2' : Vector2(1,9),
+	'leaves_side_3' : Vector2(1,9),
+	'leaves_side_4' : Vector2(1,9),
+	'leaves_side_5' : Vector2(1,9),
+	'leaves_side_6' : Vector2(1,9),
+	'leaves_side_7' : Vector2(1,9),
+	'leaves_side_8' : Vector2(1,9),
 	#----Grass----#
 	'grass_top'    : Vector2(8,1),
 	'grass_bottom' : Vector2(8,3),
@@ -134,7 +145,7 @@ const TEXTURES = {
 	"test_side_5" : Vector2(1,4),
 	"test_side_6" : Vector2(1,4),
 	"test_side_7" : Vector2(1,4),
-	"test_side_8" : Vector2(1    ,4),
+	"test_side_8" : Vector2(1,4),
 }
 
 const MODELS = {

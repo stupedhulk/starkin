@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://87frj1tbukle"]
+[gd_scene load_steps=18 format=3 uid="uid://87frj1tbukle"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_hvk8w"]
 [ext_resource type="Texture2D" uid="uid://caji1asi83jgv" path="res://Textures/slot spriteshete.png" id="2_mquct"]
 [ext_resource type="Script" path="res://scripts/Slot.gd" id="3_onv5b"]
 [ext_resource type="Texture2D" uid="uid://cspltkdcta3y8" path="res://Textures/blocks.png" id="4_7exws"]
+[ext_resource type="Shader" path="res://Screen.gdshader" id="5_cw1s1"]
 
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(1, 1.9, 1)
@@ -48,6 +49,9 @@ region = Rect2(224, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cn7us"]
 atlas = ExtResource("4_7exws")
 region = Rect2(288, 0, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8b24"]
+shader = ExtResource("5_cw1s1")
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_hvk8w")
@@ -301,3 +305,13 @@ target_position = Vector3(0, -5, 0)
 [node name="double jump" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Screen shader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_e8b24")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

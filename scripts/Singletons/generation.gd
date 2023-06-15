@@ -237,18 +237,18 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 					var pillar_surface = abs(clamp(noise.get_noise_2d((pos.x + relative_pos.x) * 1, 1 * \
 					(pos.z + relative_pos.z)), 0 , 1)) * 10
 					
-					var world_edge = 100
+					var world_edge = 15000
 					#end of the world
 					var test = abs(noise.get_noise_3d(pos.x + chunk_pos.x * chunk_size.x, pos.y + chunk_pos.y * chunk_size.y, pos.z + chunk_pos.z * chunk_size.z))
-					test -= (abs(pos.x + chunk_pos.x*chunk_size.x) - world_edge)/300.0
+					var test2 = max(abs(pos.x + chunk_pos.x*chunk_size.x), abs(pos.z + chunk_pos.z*chunk_size.z))
+					test -= (test2 - world_edge)/300.0
 					if (abs(pos.x + chunk_pos.x*chunk_size.x) >= world_edge or abs(pos.z + chunk_pos.z*chunk_size.z) >= world_edge) and !test > 0.1:
 						block = null
 					
 					#semirealistic
 					elif pos.y < surface - chunk_pos.y*chunk_size.y and !cave == 1 and pos.y > low  - chunk_pos.y*chunk_size.y:
 						if pos.y <= surface - chunk_pos.y*chunk_size.y - 5:
-							if randi()%1+1 == 1: block = 'stone'
-							else: block = 'cobblestone'
+							block = 'stone'
 						elif pos.y == surface - chunk_pos.y*chunk_size.y - 1:
 							block = 'grass'
 						else:
@@ -298,13 +298,13 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 					
 					
 					
-					
+					#creating grass patches on the surface of stone
 					if pos in blocks and blocks[pos] == "stone" \
 							and not (pos + Vector3(0,1,0) in blocks or pos + Vector3(0,1,0) in reference_blocks) \
 							and caves.get_noise_3d(pos.x, pos.y, pos.z) > 0.5:
 						blocks[pos] = "grass_stone"
 					
-					
+					#adding patches of bongamite above the pillars
 					if pos in blocks and blocks[pos] == "stone":
 						var value = noise.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
 							
@@ -313,6 +313,7 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 						else:
 							blocks[pos] = 'bongamite_ore'
 					
+					#changing pillar_placeholder blocks into stone and munatite ore blocks
 					if pos in blocks and blocks[pos] == "pillar_placeholder":
 						var value = noise.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
 							
@@ -325,6 +326,7 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 						else:
 							blocks[pos] = 'munatite_ore_dence'
 					
+					#doing the same for reference blocks to avoid issues
 					if pos in reference_blocks and reference_blocks[pos] == "pillar_placeholder":
 						var value = noise.get_noise_3d((pos.x + chunk_pos.x*chunk_size.x)*3, (pos.y + chunk_pos.y*chunk_size.y)*3, (pos.z + chunk_pos.z*chunk_size.z)*3)
 						
@@ -774,6 +776,190 @@ func generate_chunk(chunk_pos, Seed, type, debug, deep_debug):
 						pos.y = -1
 						pos.z += 1
 			if debug: print("ran: " + i)
+	
+	
+		elif i == "chatGPT": #Elevated Wilderness
+			# setup
+
+			noise.fractal_octaves = 6
+			noise2.fractal_octaves = 6
+			noise3.fractal_octaves = 6
+			caves.fractal_octaves = 4
+			# Pass 1
+			# looping through each position in the chunk
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+					var rel_pos = pos + chunk_pos*chunk_size
+
+					# Write Generation code here
+					# Pass 1: Generate terrain structure
+					var height = 40
+					var surface_level = noise.get_noise_3d(rel_pos.x, rel_pos.y, rel_pos.z) * 10.0 + height
+					var cave_noise = caves.get_noise_3d(rel_pos.x, rel_pos.y, rel_pos.z)
+
+					if rel_pos.y <= surface_level:
+						if rel_pos.y <= surface_level - 5:
+							block = "stone"
+						else:
+							block = "dirt"
+					elif rel_pos.y <= surface_level + 3:
+						if rel_pos.y <= surface_level + 2:
+							if cave_noise > 0.3:
+								block = "cobblestone"
+							else:
+								block = "grass"
+						else:
+							block = null
+					else:
+						block = null
+
+					# adding block to dictionary (just set block = [block type] before here to change the block, leave null for nothing)
+					if block != null:
+						if pos.x >= 0 and pos.x < chunk_size.x \
+								and pos.y >= 0 and pos.y < chunk_size.y \
+								and pos.z >= 0 and pos.z < chunk_size.z:
+							blocks[pos] = block
+						else:
+							reference_blocks[pos] = block
+
+					# getting next position value
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+
+			# pass 2 (set noise variables to what is needed here, in this pass just set blocks[pos] = the block)
+
+			noise.fractal_octaves = 6
+			noise2.fractal_octaves = 6
+			noise3.fractal_octaves = 6
+			caves.fractal_octaves = 4
+
+			# looping through each position in the chunk
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+
+					# EXAMPLE
+					# if pos in blocks and blocks[pos] == "stone" \
+					#         and not (pos + Vector3(0,1,0) in blocks or pos + Vector3(0,1,0) in reference_blocks) \
+					#         and caves.get_noise_3d(pos.x, pos.y, pos.z) > 0.5:
+					#     blocks[pos] = "grass_stone"
+
+					# write code here
+					# Pass 2: Modify terrain (e.g., add decorations, ores)
+					if pos in blocks and blocks[pos] == "stone" and pos.z >= 30:
+						var noise_value = noise2.get_noise_3d(pos.x, pos.y, pos.z)
+						if noise_value > 0.6:
+							blocks[pos] = "cobblestone"
+						elif noise_value < -0.4:
+							blocks[pos] = "block o' rocks"
+
+					# getting next position value
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+
+			if debug: print("ran: " + i)
+	
+	
+		if i == "chatGPT2": #Frozen Peaks
+			# setup
+
+			noise.fractal_octaves = 8
+			noise2.fractal_octaves = 6
+			noise3.fractal_octaves = 7
+			caves.fractal_octaves = 4
+			
+			
+			# Pass 1
+			# looping through each position in the chunk
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+					var rel_pos = pos + chunk_pos*chunk_size
+					# Write Generation code here
+					# Pass 1: Generate terrain structure
+					var height = 80
+					var surface_level = noise.get_noise_3d(rel_pos.x, rel_pos.y, rel_pos.z) * 10.0 + height
+					var cave_noise = caves.get_noise_3d(rel_pos.x, rel_pos.y, rel_pos.z)
+					
+					if rel_pos.y <= surface_level:
+						if rel_pos.y <= surface_level - 5:
+							block = "stone"
+						else:
+							block = "dirt"
+					elif rel_pos.y <= surface_level + 3:
+						if rel_pos.y <= surface_level + 2:
+							if cave_noise > 0.3:
+								block = "cobblestone"
+							else:
+								block = "cloud"
+						else:
+							block = null
+					else:
+						block = null
+					
+					
+					# adding block to dictionary
+					if block != null:
+						if pos.x >= 0 and pos.x < chunk_size.x \
+						and pos.y >= 0 and pos.y < chunk_size.y\
+						and pos.z >= 0 and pos.z < chunk_size.z:
+							blocks[pos] = block
+						else:
+							reference_blocks[pos] = block
+					
+					# getting next position value
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+			
+			
+			# Pass 2 (set noise variables to what is needed here, in this pass just set blocks[pos] = the block)
+			
+			noise.fractal_octaves = 8
+			noise2.fractal_octaves = 6
+			noise3.fractal_octaves = 7
+			caves.fractal_octaves = 4
+			
+			# looping through each position in the chunk
+			while pos.z < chunk_size.z + 1:
+				if pos.x < chunk_size.x + 1 and pos.y < chunk_size.y + 1:
+					
+					# Write code here
+					# Pass 2: Modify terrain (e.g., add decorations, ores)
+					if pos in blocks and blocks[pos] == "stone" and pos.z >= 40:
+						var noise_value = noise2.get_noise_3d(pos.x, pos.y, pos.z)
+						if noise_value > 0.6:
+							blocks[pos] = "cobblestone"
+						elif noise_value < -0.4:
+							blocks[pos] = "block o' rocks"
+					
+					# getting next position value
+					pos.x += 1
+				else:
+					if pos.x >= chunk_size.x + 1:
+						pos.x = -1
+						pos.y += 1
+					if pos.y >= chunk_size.y + 1:
+						pos.y = -1
+						pos.z += 1
+				
+			if debug: print("ran: " + i)
+	
 	
 	
 	if deep_debug: print(blocks)

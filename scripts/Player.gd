@@ -106,6 +106,11 @@ func _ready():
 		$XROrigin3D.visible = false
 
 func _physics_process(delta):
+#	var distance = max(position.x, position.z)
+#	var material = camera.get_node("CSGBox3D").get_material()
+#	material.albedo_color = Color8(0, 0, 0, int(clamp(sin(((distance-15000)/200)*(PI/2)), 0, 1)*255))
+	
+	
 	
 	var file = FileAccess.open("user://worlds/" + Generation.world_name + "/player properties.txt", FileAccess.WRITE)
 	file.store_string(str({

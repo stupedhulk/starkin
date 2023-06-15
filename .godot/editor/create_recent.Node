@@ -1,10 +1,12 @@
+CanvasLayer
+ColorRect
+CSGSphere3D
 CSGBox3D
 Node3D
 Timer
 Button
 Label
 TextEdit
-ColorRect
 Control
 CheckBox
 OptionButton
@@ -28,5 +30,3 @@ Node
 CSGPolygon3D
 SpotLight3D
 OmniLight3D
-FogVolume
-Window
